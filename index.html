@@ -3,46 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOPA</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Lalezar&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <link rel="stylesheet" href="style.css">
+    <title>جاري التحويل...</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f4f4; color: #333; }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <h1 class="brand-logo-text">Dopa</h1>
-        
-        <p class="description">حلم صغير طموح كبير</p>
+    <div style="text-align: center;">
+        <div class="loader" style="margin: 0 auto 15px;"></div>
+        <p>جاري توجيهك إلى الوجهة المطلوبة...</p>
+    </div>0
 
-        <div class="links-group">
-            
-            <a href="https://dopa.foodics.online/menu/-246661" class="link-item" target="_blank">
-                <i class="fa-solid fa-utensils"></i>
-                Menu
-            </a>
+    <script>
+        // هنا تضع الروابط الخاصة بك
+        // الكلمة المفتاحية (slug) مقابل الرابط الطويل (URL)
+        const links = {
+            "p1": "https://www.tiktok.com/@dopa.eg.1", // TikTok
+            "p2": "https://www.instagram.com/dopa.eg.1/", // Instagram
+            "p3": "menu.pdf", // Menu
+            "p4": "https://wa.me/201015319319", // WhatsApp
+            "p5": "https://www.facebook.com/share/1J3nmBNUtF/?mibextid=wwXIfr" // Facebook
+        };
 
-            <a href="#" class="link-item" target="_blank">
-                <i class="fa-solid fa-location-dot"></i>
-                Location
-            </a>
+        // وظيفة الحصول على الكلمة من الرابط (مثال: mysite.com/?id=p1)
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetId = urlParams.get('id');
 
-            <a href="https://www.tiktok.com/@dobamine33?_r=1&_t=ZS-92YO4Ng7zIl" class="link-item" target="_blank">
-                <i class="fa-brands fa-tiktok"></i>
-                TikTok
-            </a>
-
-            <a href="https://www.instagram.com/dobamine.1?igsh=MTVpYmRkcDFtOW5wcg==" class="link-item" target="_blank">
-                <i class="fa-brands fa-instagram"></i>
-                Instagram
-            </a>
-
-        </div>
-    </div>
-
+        if (targetId && links[targetId]) {
+            window.location.href = links[targetId];
+        } else {
+            // عرض أزرار في حال عدم وجود id في الرابط
+            document.body.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <h2>أهلاً بك في Dopa</h2>
+                    <p>يرجى اختيار الوجهة:</p>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="menu.pdf" style="padding: 10px; background: #3498db; color: white; text-decoration: none; border-radius: 5px;">قائمة الطعام (Menu)</a>
+                        <a href="${links.p2}" style="padding: 10px; background: #e1306c; color: white; text-decoration: none; border-radius: 5px;">إنستجرام</a>
+                        <a href="${links.p4}" style="padding: 10px; background: #25d366; color: white; text-decoration: none; border-radius: 5px;">واتساب</a>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
 </body>
 </html>
